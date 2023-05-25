@@ -24,6 +24,8 @@
     "fastify-cli": "^5.7.1",
     "fastify-plugin": "^4.5.0",
     "pg": "^8.11.0",
+    "pg-hstore": "^2.3.4",
+    "sequelize": "^6.31.1",
     "sequelize-fastify": "^2.0.0"
   },
   "devDependencies": {

@@ -53,7 +53,7 @@ export default fp(async (fastify, opts) => {
   Users.hasMany(Todo, { foreignKey: "userId" });
 
   try {
-    await sequelize.sync({ force: true });
+    await sequelize.sync({ force: false });
     console.log("User and Todo tables created successfully");
   } catch (error) {
     console.error("Unable to create tables:", error);

@@ -16,8 +16,12 @@ export default {
 
   createTodo: async (request, reply) => {
     try {
-      const { title, completed } = request.body;
-      const newTodo = await request.server.Todo.create({ title, completed }); // Create a new todo in the Todos table
+      const { title, completed, userId } = request.body;
+      const newTodo = await request.server.Todo.create({
+        title,
+        completed,
+        userId,
+      }); // Create a new todo in the Todos table
       reply.code(201).send(newTodo);
     } catch (error) {
       console.error("Error creating a todo", error);

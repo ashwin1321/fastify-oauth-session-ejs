@@ -42,7 +42,7 @@ export default fp(async (fastify, opts) => {
       type: DataTypes.INTEGER,
       allowNull: false,
       references: {
-        model: Users,
+        model: "Users",
         key: "id",
       },
     },

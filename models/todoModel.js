@@ -5,7 +5,7 @@ export default fp(async (fastify, opts) => {
   const sequelize = fastify.sequelize;
 
   const Users = sequelize.define("User", {
-    id: {
+    UserId: {
       type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true,
@@ -43,7 +43,7 @@ export default fp(async (fastify, opts) => {
       allowNull: false,
       references: {
         model: "Users",
-        key: "id",
+        key: "UserId",
       },
     },
   });

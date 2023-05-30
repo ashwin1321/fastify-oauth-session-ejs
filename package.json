@@ -17,6 +17,7 @@
   "license": "ISC",
   "dependencies": {
     "@fastify/autoload": "^5.0.0",
+    "@fastify/cors": "^8.3.0",
     "@fastify/postgres": "^5.2.0",
     "@fastify/sensible": "^5.0.0",
     "@hapi/joi": "^17.1.1",

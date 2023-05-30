@@ -6,6 +6,8 @@ export default {
       if (todos.length === 0) {
         return reply.code(404).send("No todos found");
       }
+      const token = request.session.get("token");
+      console.log(`tokennnnnnnnnnnnnnn` + token);
 
       reply.code(200).send(todos);
     } catch (error) {

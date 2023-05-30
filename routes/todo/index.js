@@ -5,25 +5,30 @@ import {
   updateTodoOpts,
   deleteTodoOpts,
 } from "../../Schemas/todoSchema.js";
+import validateOauth from "../../middlewares/validation.js";
 
 export default async function (fastify, opts) {
-  fastify.get("/", { schema: getTodosOpts.schema }, todoControllers.getTodos);
+  fastify.get(
+    "/",
+    { preHandler: validateOauth, schema: getTodosOpts.schema },
+    todoControllers.getTodos
+  );
 
   fastify.post(
     "/",
-    { schema: createTodoOpts.schema },
+    { preHandler: validateOauth, schema: createTodoOpts.schema },
     todoControllers.createTodo
   );
 
   fastify.put(
     "/:id",
-    { schema: updateTodoOpts.schema },
+    { preHandler: validateOauth, schema: updateTodoOpts.schema },
     todoControllers.updateTodo
   );
 
   fastify.delete(
     "/:id",
-    { schema: deleteTodoOpts.schema },
+    { preHandler: validateOauth, schema: deleteTodoOpts.schema },
     todoControllers.deleteTodo
   );
 }

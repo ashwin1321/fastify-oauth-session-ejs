@@ -6,18 +6,23 @@ import {
   deleteTodoOpts,
 } from "../../Schemas/todoSchema.js";
 
+import {
+  createTodoJoi,
+  updateTodoJoi,
+  validateRequest,
+} from "../../middlewares/JoiValidation.js";
+
 export default async function (fastify, opts) {
   fastify.get("/", { schema: getTodosOpts.schema }, todoControllers.getTodos);
 
   fastify.post(
     "/",
-    { schema: createTodoOpts.schema },
+    { preHandler: validateRequest(createTodoJoi) },
     todoControllers.createTodo
   );
-
   fastify.put(
     "/:id",
-    { schema: updateTodoOpts.schema },
+    { preHandler: validateRequest(updateTodoJoi) },
     todoControllers.updateTodo
   );
 

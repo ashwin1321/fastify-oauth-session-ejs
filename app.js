@@ -14,8 +14,9 @@ export default async function (fastify, opts) {
   // Place here your custom code!
 
   fastify.register(cors, {
-    origin: "*",
+    origin: "localhost:3000",
     method: ["GET", "POST", "PUT", "DELETE"],
+    withCredentials: true,
   });
 
   // Do not touch the following lines

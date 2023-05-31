@@ -25,6 +25,11 @@ export default {
       if (user.password !== password) {
         return reply.code(401).send("Incorrect password");
       }
+      // Store the user ID in the session
+      request.session.userId = user.UserId;
+
+      console.log("Session", request.session);
+
       reply.code(200).send("Login successful");
     } catch (error) {
       console.error("Error logging in a user", error);

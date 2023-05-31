@@ -24,6 +24,7 @@ export default async function (fastify, opts) {
       secure: false,
       maxAge: 1000 * 60 * 60 * 24 * 7, // 1 week
     },
+    saveuninitialized: false,
   });
 
   fastify.register(import("@fastify/csrf-protection"), {

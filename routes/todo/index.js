@@ -7,23 +7,27 @@ import {
 } from "../../Schemas/todoSchema.js";
 
 export default async function (fastify, opts) {
-  fastify.get("/", { schema: getTodosOpts.schema }, todoControllers.getTodos);
+  fastify.get(
+    "/",
+    { preHandler: fastify.authenticate, schema: getTodosOpts.schema },
+    todoControllers.getTodos
+  );
 
   fastify.post(
     "/",
-    { schema: createTodoOpts.schema },
+    { preHandler: fastify.authenticate, schema: createTodoOpts.schema },
     todoControllers.createTodo
   );
 
   fastify.put(
     "/:id",
-    { schema: updateTodoOpts.schema },
+    { preHandler: fastify.authenticate, schema: updateTodoOpts.schema },
     todoControllers.updateTodo
   );
 
   fastify.delete(
     "/:id",
-    { schema: deleteTodoOpts.schema },
+    { preHandler: fastify.authenticate, schema: deleteTodoOpts.schema },
     todoControllers.deleteTodo
   );
 }

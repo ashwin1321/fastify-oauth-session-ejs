@@ -36,4 +36,14 @@ export default {
       reply.code(500).send("Internal Server Error");
     }
   },
+
+  logoutUser: async (request, reply) => {
+    try {
+      request.session.destroy(); // Destroy the session
+      reply.code(200).send("Logout successful");
+    } catch (error) {
+      console.error("Error logging out a user", error);
+      reply.code(500).send("Internal Server Error");
+    }
+  },
 };

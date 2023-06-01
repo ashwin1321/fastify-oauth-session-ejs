@@ -1,6 +1,9 @@
 import fp from "fastify-plugin";
 import fastifyCookie from "@fastify/cookie";
 import fastifySession from "@fastify/session";
+import axios from "axios";
+import dotenv from "dotenv";
+dotenv.config();
 
 export default fp(async function (fastify, opts) {
   fastify.register(fastifyCookie);
@@ -17,30 +20,40 @@ export default fp(async function (fastify, opts) {
 
   fastify.decorate("authenticate", async function (request, reply) {
     try {
-      const user = request.session.user;
+      const users = request.session.user;
 
-      if (!user) {
+      if (!users) {
         reply.code(401).send("unauthorized");
       }
 
-      const accessToken = user.access_token;
-      const response = await fetch("https://api.github.com/user", {
-        headers: {
-          Authorization: `Bearer ${accessToken}`,
-        },
-      });
+      const accessToken = users.access_token;
 
-      if (!response.ok) {
+      const response = await axios.post(
+        `https://api.github.com/applications/${process.env.GITHUB_CLIENT_ID}/token`,
+        { access_token: accessToken },
+        {
+          headers: {
+            Authorization: `Basic ${Buffer.from(
+              process.env.GITHUB_CLIENT_ID +
+                ":" +
+                process.env.GITHUB_CLIENT_SECRET
+            ).toString("base64")}`,
+          },
+        }
+      );
+
+      if (!response) {
         reply.code(401).send("unauthorized here");
+        return;
       }
 
-      const body = await response.json();
-      request.user = body;
+      const { id, url, token, user } = response.data;
+
+      request.users = { id, url, token, user };
+      console.log(request.users);
       return;
     } catch (err) {
       reply.code(401).send(err);
     }
   });
 });
-
-// authenticate the user

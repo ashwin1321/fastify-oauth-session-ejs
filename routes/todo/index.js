@@ -7,7 +7,11 @@ import {
 } from "../../Schemas/todoSchema.js";
 
 export default async function (fastify, opts) {
-  fastify.get("/", { schema: getTodosOpts.schema }, todoControllers.getTodos);
+  fastify.get(
+    "/",
+    { preHandler: fastify.authenticate, schema: getTodosOpts.schema },
+    todoControllers.getTodos
+  );
 
   fastify.post(
     "/",

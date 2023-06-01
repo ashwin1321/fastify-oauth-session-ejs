@@ -1,7 +1,12 @@
+import oauthPlugin from "@fastify/oauth2";
+import fastifyCookie from "@fastify/cookie";
+import fastifySession from "@fastify/session";
 import path from "path";
 import AutoLoad from "@fastify/autoload";
 import { fileURLToPath } from "url";
 import todoModel from "./models/todoModel.js";
+import dotenv from "dotenv";
+dotenv.config();
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -12,7 +17,31 @@ export const options = {};
 export default async function (fastify, opts) {
   // Place here your custom code!
 
-  // Do not touch the following lines
+  fastify.register(fastifyCookie);
+
+  fastify.register(fastifySession, {
+    secret: `thisismythirtytwocharactersecretkeyandyoucannotguessit`,
+    cookie: {
+      secure: false,
+      httpOnly: true,
+      maxAge: 7 * 24 * 60 * 60 * 1000,
+    },
+    saveuninitialized: false,
+  });
+
+  fastify.register(oauthPlugin, {
+    name: "githubOAuth2",
+    scope: ["user", "repo"],
+    credentials: {
+      client: {
+        id: process.env.GITHUB_CLIENT_ID,
+        secret: process.env.GITHUB_CLIENT_SECRET,
+      },
+      auth: oauthPlugin.GITHUB_CONFIGURATION,
+    },
+    startRedirectPath: "/login/github",
+    callbackUri: "http://localhost:3000/login/github/callback",
+  });
 
   // This loads all plugins defined in plugins
   // those should be support plugins that are reused

@@ -6,9 +6,9 @@ export default fp(async function (fastify, opts) {
       await fastify.githubOAuth2.getAccessTokenFromAuthorizationCodeFlow(
         request
       );
+    console.log(token.token);
 
-    request.session.set("user", token);
-    reply.send(`yo token ho` + JSON.stringify(request.session.get("user")));
-    // reply.redirect("/todo");
+    request.session.user = token.token;
+    reply.send(`yo token ho` + JSON.stringify(request.session.user));
   });
 });

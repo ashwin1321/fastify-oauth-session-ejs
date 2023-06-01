@@ -1,6 +1,4 @@
 import oauthPlugin from "@fastify/oauth2";
-import fastifyCookie from "@fastify/cookie";
-import fastifySession from "@fastify/session";
 import path from "path";
 import AutoLoad from "@fastify/autoload";
 import { fileURLToPath } from "url";
@@ -16,18 +14,6 @@ export const options = {};
 
 export default async function (fastify, opts) {
   // Place here your custom code!
-
-  fastify.register(fastifyCookie);
-
-  fastify.register(fastifySession, {
-    secret: `thisismythirtytwocharactersecretkeyandyoucannotguessit`,
-    cookie: {
-      secure: false,
-      httpOnly: true,
-      maxAge: 7 * 24 * 60 * 60 * 1000,
-    },
-    saveuninitialized: false,
-  });
 
   fastify.register(oauthPlugin, {
     name: "githubOAuth2",

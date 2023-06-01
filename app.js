@@ -56,6 +56,7 @@ export default async function (fastify, opts) {
 
     // reply.send({ access_token: token.access_token });
     request.session.set("token", token.access_token);
+    request.session.set("datas", token);
     reply.send("You are logged in!");
   });
 

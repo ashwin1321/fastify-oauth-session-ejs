@@ -1,6 +1,9 @@
 export default {
   getTodos: async (request, reply) => {
     try {
+      const data = request.session.get("datas");
+      console.log(data);
+
       const todos = await request.server.Todo.findAll(); // Retrieve all todos from the Todos table
 
       if (todos.length === 0) {
@@ -10,6 +13,7 @@ export default {
       console.log(`tokennnnnnnnnnnnnnn` + token);
 
       reply.code(200).send(todos);
+      return;
     } catch (error) {
       console.error("Error retrieving todos", error);
       reply.code(500).send("Internal Server Error");

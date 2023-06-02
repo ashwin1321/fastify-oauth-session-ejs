@@ -18,6 +18,10 @@ export default fp(async function (fastify, opts) {
     saveuninitialized: false,
   });
 
+  fastify.register(import("@fastify/csrf-protection"), {
+    sessionPlugin: "@fastify/session",
+  });
+
   fastify.decorate("authenticate", async function (request, reply) {
     try {
       const users = request.session.user;

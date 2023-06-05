@@ -12,6 +12,12 @@ export const options = {};
 export default async function (fastify, opts) {
   // Place here your custom code!
 
+  // Register the plugin with the view engine
+  fastify.register(import("@fastify/view"), {
+    engine: {
+      ejs: import("ejs"),
+    },
+  });
   // Do not touch the following lines
 
   // This loads all plugins defined in plugins

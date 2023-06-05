@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Login</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+      }
+
+      .container {
+        max-width: 400px;
+        margin: 0 auto;
+        margin-top: 18% !important;
+        padding: 20px;
+      }
+
+      h1 {
+        text-align: center;
+        margin-bottom: 20px;
+      }
+
+      label {
+        display: block;
+        margin-bottom: 10px;
+      }
+
+      input[type="text"],
+      input[type="password"] {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 20px;
+      }
+
+      button {
+        padding: 10px 20px;
+        background-color: #4caf50;
+        color: white;
+        border: none;
+        cursor: pointer;
+      }
+
+      button:hover {
+        background-color: #45a049;
+      }
+
+      .error-border {
+        border: 1px solid red;
+      }
+
+      .error {
+        color: red;
+        margin-top: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Login</h1>
+
+      <form action="/user/login" method="POST">
+        <label for="email">Email</label>
+        <input
+          type="text"
+          id="email"
+          name="email"
+          class="<%= message ? 'error-border' : '' %>"
+          required
+        />
+
+        <label for="password">Password</label>
+        <input
+          type="password"
+          id="password"
+          name="password"
+          class="<%= message ? 'error-border' : '' %>"
+          required
+        />
+        <br />
+        <% if (message) { %>
+        <p class="error"><%= message %></p>
+        <% } %>
+        <br />
+        <button type="submit">Login</button>
+      </form>
+    </div>
+  </body>
+</html>

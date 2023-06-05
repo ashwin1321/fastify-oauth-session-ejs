@@ -5,10 +5,19 @@ export default {
 
       const user = await request.server.Users.findOne({ where: { email } }); // Retrieve the user from the Users table
       if (user) {
-        return reply.code(404).send("User already exists");
+        return reply.view("templates/register.ejs", {
+          message: "User already exists",
+        });
       }
+
+      if (password.length < 8) {
+        return reply.view("templates/register.ejs", {
+          message: "Password should be at least 8 characters long",
+        });
+      }
+
       const newUser = await request.server.Users.create({ email, password }); // Create a new user in the Users table
-      reply.code(201).send(newUser);
+      reply.redirect("/user/login");
     } catch (error) {
       console.error("Error creating a user", error);
       reply.code(500).send("Internal Server Error");
@@ -18,19 +27,17 @@ export default {
   loginUser: async (request, reply) => {
     try {
       const { email, password } = request.body;
-      const user = await request.server.Users.findOne({ where: { email } }); // Retrieve the user from the Users table
-      if (!user) {
-        return reply.code(404).send("User not found");
+      const user = await request.server.Users.findOne({ where: { email } });
+
+      if (!user || user.password !== password) {
+        return reply.view("templates/login.ejs", {
+          message: "Wrong credentials",
+        });
       }
-      if (user.password !== password) {
-        return reply.code(401).send("Incorrect password");
-      }
-      // Store the user ID in the session
+
       request.session.userId = user.UserId;
 
-      console.log("Session", request.session);
-
-      reply.code(200).send("Login successful");
+      reply.redirect("/");
     } catch (error) {
       console.error("Error logging in a user", error);
       reply.code(500).send("Internal Server Error");

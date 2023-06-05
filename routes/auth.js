@@ -1,8 +1,8 @@
 export default async function (fastify, opts) {
-  fastify.get("/login", async function (request, reply) {
-    return reply.send("Login page");
+  fastify.get("/user/login", async function (request, reply) {
+    return await reply.view("templates/login.ejs", { message: "" });
   });
-  fastify.get("/register", async function (request, reply) {
-    return reply.send("Register page");
+  fastify.get("/user/register", async function (request, reply) {
+    return reply.view("templates/register.ejs", { message: "" });
   });
 }

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Todos</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+
+    .container {
+      width: 500px;
+      height: 300px;
+      margin: 0 auto;
+      text-align: center;
+      margin-top: 10% !important;
+      border: 1px solid #ccc;
+    }
+
+    h1 {
+      color: #333;
+      text-align: center;
+    }
+
+    ul {
+      list-style-type: none;
+      padding: 0;
+      overflow-y: auto;
+
+    }
+
+    li {
+      margin-bottom: 10px;
+    }
+
+    .completed {
+      text-decoration: line-through;
+    }
+
+    .delete-button {
+      background-color: #f44336;
+      color: white;
+      border: none;
+      padding: 5px 10px;
+      border-radius: 3px;
+      cursor: pointer;
+    }
+
+    .delete-button:hover {
+      background-color: #d32f2f;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+
+    <h1>Your Todo List</h1>
+    <hr>
+
+    <ul>
+      <% todos.forEach((todo)=> { %>
+        <li>
+          <input type="checkbox" <% if (todo.completed) { %>checked disabled<% } %> onchange="updateTodoStatus('<%=
+              todo.id %>', '<%= todo.title %>')" />
+                <span <% if (todo.completed) { %>class="completed"<% } %>>
+                    <%= todo.title %> update bhako xaina tyo hernu xa
+                </span>
+                <button class="delete-button" onclick="deleteTodo('<%= todo.id %>')">Delete</button>
+        </li>
+        <% }) %>
+    </ul>
+  </div>
+
+  <script>
+    function updateTodoStatus(todoId, title) {
+      const checkbox = document.querySelector(`input[type='checkbox'][onchange="updateTodoStatus('${todoId}')']`);
+      const completed = checkbox.checked;
+
+      fetch(`/todo/${todoId}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          title: title,
+          completed: completed,
+        }),
+      })
+        .then((response) => {
+          response.json()
+          window.location.reload();
+
+        })
+
+        .catch((error) => console.error(error));
+    }
+
+    function deleteTodo(todoId) {
+      fetch(`/todo/${todoId}`, {
+        method: 'DELETE',
+      })
+        .then((response) => {
+          response.json()
+          window.location.reload();
+
+        })
+
+        .catch((error) => console.error(error));
+    }
+  </script>
+</body>
+
+</html>

@@ -13,7 +13,9 @@ export default {
         return reply.code(404).send("No todos found");
       }
 
-      reply.code(200).send(todos);
+      return reply.view("templates/posts.ejs", {
+        todos,
+      }); // Render the todos.ejs template and pass the todos to it
     } catch (error) {
       console.error("Error retrieving todos", error);
       reply.code(500).send("Internal Server Error");

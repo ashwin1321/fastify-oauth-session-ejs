@@ -19,7 +19,11 @@ export default fp(async function (fastify, opts) {
   });
 
   fastify.register(import("@fastify/csrf-protection"), {
-    sessionPlugin: "@fastify/session",
+    // sessionPlugin: "@fastify/session",            // we can get the csrf token from the session where it is stored as  _csrf
+    getToken: (req) => {
+      // or we can get the csrf token from the header where it is stored as x-csrf-token
+      return req.headers["x-csrf-token"];
+    },
   });
 
   fastify.decorate("authenticate", async function (request, reply) {

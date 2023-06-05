@@ -22,7 +22,8 @@ export default fp(async function (fastify, opts) {
     // sessionPlugin: "@fastify/session",            // we can get the csrf token from the session where it is stored as  _csrf
     getToken: (req) => {
       // or we can get the csrf token from the header where it is stored as x-csrf-token
-      return req.headers["x-csrf-token"];
+      console.log(`req.session.csrfToken: \n \n\n\n${req.session.csrfToken}`);
+      return req.session.csrfToken;
     },
   });
 

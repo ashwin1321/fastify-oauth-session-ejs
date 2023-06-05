@@ -10,6 +10,7 @@ export default fp(async function (fastify, opts) {
 
     request.session.user = token.token;
     const csrfToken = await reply.generateCsrf();
-    reply.send(csrfToken);
+    request.session.csrfToken = csrfToken;
+    reply.send(request.session);
   });
 });

@@ -9,13 +9,7 @@ export default fp(async function (fastify, opts) {
     console.log(token.token);
 
     request.session.user = token.token;
-    const csrfToken = reply.generateCsrf();
-    request.session.csrfToken = csrfToken;
-    reply.send(
-      `yo csrf token ho` +
-        csrfToken +
-        `yo token ho` +
-        JSON.stringify(token.token)
-    );
+    const csrfToken = await reply.generateCsrf();
+    reply.send(csrfToken);
   });
 });

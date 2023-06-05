@@ -4,7 +4,7 @@ import axios from "axios";
 export default fp(async function (fastify, opts) {
   fastify.get(
     "/getuserdata",
-    { preHandler: fastify.authenticate },
+    { preHandler: fastify.authenticate, onRequest: fastify.csrfProtection },
     async (request, reply) => {
       //   reply.send(request.users);
       //   return;

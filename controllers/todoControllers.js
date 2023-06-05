@@ -1,7 +1,13 @@
+import { where } from "sequelize";
+
 export default {
   getTodos: async (request, reply) => {
     try {
-      const todos = await request.server.Todo.findAll(); // Retrieve all todos from the Todos table
+      const user = request.session.userId; // Retrieve the user from the session
+
+      const todos = await request.server.Todo.findAll({
+        where: { userId: user },
+      }); // Retrieve all todos from the Todos table
 
       if (todos.length === 0) {
         return reply.code(404).send("No todos found");

@@ -1,7 +1,8 @@
 import path from "path";
 import AutoLoad from "@fastify/autoload";
 import { fileURLToPath } from "url";
-import todoModel from "./models/todoModel.js";
+import fastifyView from "@fastify/view";
+import ejs from "ejs";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -13,9 +14,9 @@ export default async function (fastify, opts) {
   // Place here your custom code!
 
   // Register the plugin with the view engine
-  fastify.register(import("@fastify/view"), {
+  fastify.register(fastifyView, {
     engine: {
-      ejs: import("ejs"),
+      ejs: ejs,
     },
   });
   // Do not touch the following lines

@@ -99,6 +99,12 @@
         width: 100%;
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
       }
+
+      .content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
     </style>
   </head>
 
@@ -123,12 +129,16 @@
         <ul>
           <% todos.forEach((todo)=> { %>
             <li>
-              <input id="checkbox-<%= todo.id %>" type="checkbox" <% if (todo.completed) { %>checked disabled<% } %>
-                onchange="updateTodoStatus('<%= todo.id %>', '<%= todo.title %>')" />
-                    <span <% if (todo.completed) { %>class="completed"<% } %>>
-                        <%= todo.title %>
-                    </span>
-                    <button class="delete-button" onclick="deleteTodo('<%= todo.id %>')">Delete</button>
+              <div class="content">
+                <div>
+                  <input id="checkbox-<%= todo.id %>" type="checkbox" <% if (todo.completed) { %>checked disabled<% } %>
+                    onchange="updateTodoStatus('<%= todo.id %>', '<%= todo.title %>')" />
+                        <span <% if (todo.completed) { %>class="completed"<% } %>>
+                            <%= todo.title %>
+                        </span>
+                </div>
+                <button class="delete-button" onclick="deleteTodo('<%= todo.id %>')">Delete</button>
+              </div>
             </li>
             <% }) %>
         </ul>

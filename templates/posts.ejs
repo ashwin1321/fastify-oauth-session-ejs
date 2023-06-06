@@ -61,20 +61,22 @@
     <ul>
       <% todos.forEach((todo)=> { %>
         <li>
-          <input type="checkbox" <% if (todo.completed) { %>checked disabled<% } %> onchange="updateTodoStatus('<%=
-              todo.id %>', '<%= todo.title %>')" />
+          <input id="checkbox-<%= todo.id %>" type="checkbox" <% if (todo.completed) { %>checked disabled<% } %>
+            onchange="updateTodoStatus('<%= todo.id %>', '<%= todo.title %>')" />
                 <span <% if (todo.completed) { %>class="completed"<% } %>>
-                    <%= todo.title %> update bhako xaina tyo hernu xa
+                    <%= todo.title %>
                 </span>
                 <button class="delete-button" onclick="deleteTodo('<%= todo.id %>')">Delete</button>
         </li>
         <% }) %>
+
+
     </ul>
   </div>
 
   <script>
     function updateTodoStatus(todoId, title) {
-      const checkbox = document.querySelector(`input[type='checkbox'][onchange="updateTodoStatus('${todoId}')']`);
+      const checkbox = document.getElementById(`checkbox-${todoId}`);
       const completed = checkbox.checked;
 
       fetch(`/todo/${todoId}`, {

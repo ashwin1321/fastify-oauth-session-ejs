@@ -43,4 +43,8 @@ export default async function (fastify, opts) {
     dir: path.join(__dirname, "routes"),
     options: Object.assign({}, opts),
   });
+
+  fastify.setNotFoundHandler(async (request, reply) => {
+    return await reply.view("/templates/404page.ejs");
+  });
 }

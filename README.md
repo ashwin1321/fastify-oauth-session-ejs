@@ -1,21 +1,27 @@
 ## Brief
 
-- This repo consist of various things:
-  - main:
-    `contains basics of sequelize with postgres
-  `
-  - feature/joiandall:
-    `consists joi validation code
-  `
-  - feature/oauth:
-    `contains code for google OAuth2 authentication
- `
-  - feature/oauth-github:
-    `contains code for github OAuth2 authentication
- `
-  - feature/sessions:
-    `contains code for session authentication
- `
-  - feature/ejs:
-    `contains code for ejs for todo application
- `
+## This repo consist of various things:
+
+### main:
+
+[contains basics of sequelize with postgres]('https://github.com/ashwin1321/fastify-oauth-session-ejs/tree/feature/main')
+
+### feature/joiandall:
+
+[consists joi validation code]('https://github.com/ashwin1321/fastify-oauth-session-ejs/tree/feature/joiandall')
+
+### feature/oauth:
+
+[contains code for google OAuth2 authentication]('https://github.com/ashwin1321/fastify-oauth-session-ejs/tree/feature/oauth')
+
+### feature/oauth-github:
+
+[contains code for github OAuth2 authentication]('https://github.com/ashwin1321/fastify-oauth-session-ejs/tree/feature/oauth-github')
+
+### feature/sessions:
+
+[contains code for session authentication]('https://github.com/ashwin1321/fastify-oauth-session-ejs/tree/feature/sessions')
+
+### feature/ejs:
+
+[contains code for ejs for todo application]('https://github.com/ashwin1321/fastify-oauth-session-ejs/tree/feature/ejs')

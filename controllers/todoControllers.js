@@ -11,6 +11,7 @@ export default {
 
       return reply.view("templates/posts.ejs", {
         todos,
+        user,
       }); // Render the todos.ejs template and pass the todos to it
     } catch (error) {
       console.error("Error retrieving todos", error);

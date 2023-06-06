@@ -3,7 +3,8 @@ export default async function (fastify, opts) {
     "/",
     { preHandler: fastify.isLogged },
     async function (request, reply) {
-      return await reply.view("templates/index.ejs");
+      const user = request.session.userId;
+      return await reply.view("templates/index.ejs", { user });
     }
   );
 }

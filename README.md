@@ -4,24 +4,24 @@
 
 ### main:
 
-[contains basics of sequelize with postgres]('https://github.com/ashwin1321/fastify-oauth-session-ejs/tree/feature/main')
+[contains basics of sequelize with postgres](https://github.com/ashwin1321/fastify-oauth-session-ejs/tree/feature/main)
 
 ### feature/joiandall:
 
-[consists joi validation code]('https://github.com/ashwin1321/fastify-oauth-session-ejs/tree/feature/joiandall')
+[consists joi validation code](https://github.com/ashwin1321/fastify-oauth-session-ejs/tree/feature/joiandall)
 
 ### feature/oauth:
 
-[contains code for google OAuth2 authentication]('https://github.com/ashwin1321/fastify-oauth-session-ejs/tree/feature/oauth')
+[contains code for google OAuth2 authentication](https://github.com/ashwin1321/fastify-oauth-session-ejs/tree/feature/oauth)
 
 ### feature/oauth-github:
 
-[contains code for github OAuth2 authentication]('https://github.com/ashwin1321/fastify-oauth-session-ejs/tree/feature/oauth-github')
+[contains code for github OAuth2 authentication](https://github.com/ashwin1321/fastify-oauth-session-ejs/tree/feature/oauth-github)
 
 ### feature/sessions:
 
-[contains code for session authentication]('https://github.com/ashwin1321/fastify-oauth-session-ejs/tree/feature/sessions')
+[contains code for session authentication](https://github.com/ashwin1321/fastify-oauth-session-ejs/tree/feature/sessions)
 
 ### feature/ejs:
 
-[contains code for ejs for todo application]('https://github.com/ashwin1321/fastify-oauth-session-ejs/tree/feature/ejs')
+[contains code for ejs for todo application](https://github.com/ashwin1321/fastify-oauth-session-ejs/tree/feature/ejs)

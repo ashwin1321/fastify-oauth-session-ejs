@@ -1,79 +1,78 @@
-<%- include('partials/header.ejs') %>
-  <!DOCTYPE html>
-  <html>
+<!DOCTYPE html>
+<html>
 
-  <head>
-    <title>Verify OTP</title>
-    <style>
-      body {
-        font-family: Arial, sans-serif;
-        margin: 0;
-        padding: 0;
-        background-color: #f2f2f2;
-      }
+<head>
+  <title>Verify OTP</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f2f2f2;
+    }
 
-      .container {
-        max-width: 400px;
-        margin: 0 auto;
-        margin-top: 18% !important;
-        padding: 20px;
-      }
+    .container {
+      max-width: 400px;
+      margin: 0 auto;
+      margin-top: 18% !important;
+      padding: 20px;
+    }
 
-      h1 {
-        text-align: center;
-        margin-bottom: 20px;
-      }
+    h1 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
 
-      label {
-        display: block;
-        margin-bottom: 10px;
-      }
+    label {
+      display: block;
+      margin-bottom: 10px;
+    }
 
-      input[type="text"],
-      input[type="password"] {
-        width: 100%;
-        padding: 10px;
-        margin-bottom: 20px;
-      }
+    input[type="text"],
+    input[type="password"] {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 20px;
+    }
 
-      button {
-        padding: 10px 20px;
-        background-color: #4caf50;
-        color: white;
-        border: none;
-        cursor: pointer;
-      }
+    button {
+      padding: 10px 20px;
+      background-color: #4caf50;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
 
-      button:hover {
-        background-color: #45a049;
-      }
+    button:hover {
+      background-color: #45a049;
+    }
 
-      .error-border {
-        border: 1px solid red;
-      }
+    .error-border {
+      border: 1px solid red;
+    }
 
-      .error {
-        color: red;
-        margin-top: 10px;
-      }
-    </style>
-  </head>
+    .error {
+      color: red;
+      margin-top: 10px;
+    }
+  </style>
+</head>
 
-  <body>
-    <div class="container">
-      <h1>Verify OTP</h1>
+<body>
+  <div class="container">
+    <h1>Verify OTP</h1>
 
-      <form action="/user/login" method="POST">
-        <label for="otp">OTP</label>
-        <input type="text" id="otp" name="otp" class="<%= message ? 'error-border' : '' %>" required />
-        <% if (message) { %>
-          <p class="error">
-            <%= message %>
-          </p>
-          <% } %>
-            <button type="submit">verify</button>
-      </form>
-    </div>
-  </body>
+    <form action="/user/login" method="POST">
+      <label for="otp">OTP</label>
+      <input type="text" id="otp" name="otp" class="<%= message ? 'error-border' : '' %>" required />
+      <% if (message) { %>
+        <p class="error">
+          <%= message %>
+        </p>
+        <% } %>
+          <button type="submit">verify</button>
+    </form>
+  </div>
+</body>
 
-  </html>
+</html>

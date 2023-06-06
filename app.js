@@ -19,6 +19,8 @@ export default async function (fastify, opts) {
     engine: {
       ejs: ejs,
     },
+    layout: "/templates/layout.ejs",
+    includeViewExtension: true,
   });
 
   fastify.register(fastifyFormbody);

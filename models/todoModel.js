@@ -20,6 +20,10 @@ export default fp(async (fastify, opts) => {
       type: DataTypes.STRING,
       allowNull: false,
     },
+    otp: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+    },
   });
 
   const Todo = sequelize.define("TodosequelizePostges", {

@@ -37,7 +37,7 @@ export default {
 
       request.session.userId = user.UserId;
 
-      reply.redirect("/");
+      reply.redirect("/todo");
     } catch (error) {
       console.error("Error logging in a user", error);
       reply.code(500).send("Internal Server Error");

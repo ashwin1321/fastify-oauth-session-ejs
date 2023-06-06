@@ -13,6 +13,7 @@ export default {
       if (password.length < 8) {
         return reply.view("templates/register.ejs", {
           message: "Password should be at least 8 characters long",
+          user: "",
         });
       }
 
@@ -32,6 +33,7 @@ export default {
       if (!user || user.password !== password) {
         return reply.view("templates/login.ejs", {
           message: "Wrong credentials",
+          user: "",
         });
       }
 

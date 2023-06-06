@@ -7,7 +7,6 @@
         /* CSS styles for the navbar */
         .navbar {
             box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2);
-            padding: 10px;
             font-size: 1.2rem;
             display: flex;
             justify-content: space-between;
@@ -16,8 +15,8 @@
 
         .navbar-brand {
             font-weight: bold;
-            margin-right: 10px;
             cursor: pointer;
+            padding: 20px;
         }
 
         .delete-button {
@@ -41,10 +40,10 @@
             Todo <span style="color: rgb(27, 121, 40)">Application</span>
         </div>
 
-        <% if (user ) { %>
-            <button class="delete-button" onclick="logOut()">Logout</button>
+        <% if (!user ) { %>
+            <p></p>
             <% } else { %>
-                <p></p>
+                <button class="delete-button" onclick="logOut()">Logout</button>
                 <% } %>
 
     </div>

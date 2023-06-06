@@ -9,10 +9,6 @@ export default {
         where: { userId: user },
       }); // Retrieve all todos from the Todos table
 
-      if (todos.length === 0) {
-        return reply.code(404).send("No todos found");
-      }
-
       return reply.view("templates/posts.ejs", {
         todos,
       }); // Render the todos.ejs template and pass the todos to it

@@ -47,7 +47,7 @@ export default {
   logoutUser: async (request, reply) => {
     try {
       request.session.destroy(); // Destroy the session
-      reply.code(200).send("Logout successful");
+      reply.send("Logged out successfully");
     } catch (error) {
       console.error("Error logging out a user", error);
       reply.code(500).send("Internal Server Error");

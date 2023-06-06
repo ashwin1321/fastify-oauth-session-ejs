@@ -1,3 +1,5 @@
+import fastify from "fastify";
+
 export default async function (fastify, opts) {
   fastify.get("/user/login", async function (request, reply) {
     return await reply.view("templates/login.ejs", { message: "" });

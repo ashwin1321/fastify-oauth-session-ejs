@@ -15,4 +15,12 @@ export default async function (fastify, opts) {
       return reply.view("templates/register.ejs", { message: "", user: "" });
     }
   );
+
+  fastify.get(
+    "/user/otp",
+    { preHandler: fastify.isLogged },
+    async function (request, reply) {
+      return reply.view("templates/otp.ejs", { message: "", user: "" });
+    }
+  );
 }

@@ -24,10 +24,9 @@ export const createTodoOpts = {
   schema: {
     body: {
       type: "object",
-      required: ["title", "completed"],
+      required: ["title"],
       properties: {
         title: { type: "string" },
-        completed: { type: "boolean" },
       },
     },
     response: {

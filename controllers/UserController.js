@@ -37,9 +37,32 @@ export default {
         });
       }
 
-      request.session.userId = user.UserId;
+      const otp = Math.floor(100000 + Math.random() * 900000);
+      await request.server.Users.update(
+        { otp },
+        { where: { email } }
+      ); /* Update the user's otp in the Users table */
 
-      reply.redirect("/todo");
+      return reply.view("templates/otp.ejs", {
+        message: "",
+        user: "",
+      });
+    } catch (error) {
+      console.error("Error logging in a user", error);
+      reply.code(500).send("Internal Server Error");
+    }
+  },
+
+  verifyOtp: async (request, reply) => {
+    try {
+      const { email, otp } = request.body;
+      const user = await request.server.Users.findOne({ where: { email } });
+
+      if (!user || user.otp !== otp) {
+        return reply.view("templates/otp.ejs", {
+          message: "Wrong OTP, please try again",
+        });
+      }
     } catch (error) {
       console.error("Error logging in a user", error);
       reply.code(500).send("Internal Server Error");

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Navbar Example</title>
+    <style>
+        /* CSS styles for the navbar */
+        .navbar {
+            box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            font-size: 1.2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .navbar-brand {
+            font-weight: bold;
+            margin-right: 10px;
+        }
+
+        .navbar ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .navbar li {
+            display: inline-block;
+            margin-right: 10px;
+        }
+
+        .navbar a {
+            color: rgb(27, 121, 40);
+            text-decoration: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="navbar">
+        <div class="navbar-brand">
+            Todo <span style="color: rgb(27, 121, 40)">Application</span>
+        </div>
+
+        <% if (fastify.isLogged) { %>
+            <p>Logout</p>
+            <% } else { %>
+                <p>dd</p>
+                <% } %>
+
+    </div>
+</body>
+
+</html>

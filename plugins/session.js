@@ -22,7 +22,7 @@ export default fp(async (fastify, opts) => {
 
   fastify.decorate("authenticate", async (request, reply) => {
     if (!request.session.userId) {
-      return reply.code(401).send("Unauthorized");
+      return await reply.redirect("/");
     }
     console.log("Session", request.session);
   });

@@ -4,7 +4,7 @@
 
 ### main:
 
-[contains basics of sequelize with postgres](https://github.com/ashwin1321/fastify-oauth-session-ejs/tree/feature/main)
+[contains basics of sequelize with postgres](https://github.com/ashwin1321/fastify-oauth-session-ejs)
 
 ### feature/joiandall:
 

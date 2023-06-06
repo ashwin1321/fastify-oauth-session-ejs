@@ -20,13 +20,19 @@ export default {
 
   createTodo: async (request, reply) => {
     try {
-      const { title, completed, userId } = request.body;
+      const userId = request.session.userId;
+      const { title } = request.body;
+      const completed = false;
+      if (title.length < 1) {
+        return reply.code(400).send("Title is required");
+      }
+
       const newTodo = await request.server.Todo.create({
         title,
         completed,
         userId,
       }); // Create a new todo in the Todos table
-      reply.code(201).send(newTodo);
+      reply.redirect("/todo"); // Redirect to the /todos route
     } catch (error) {
       console.error("Error creating a todo", error);
       reply.code(500).send("Internal Server Error");

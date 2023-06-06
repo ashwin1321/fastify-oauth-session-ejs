@@ -1,5 +1,8 @@
-<!DOCTYPE html>
-<html>
+<%- include('partials/header.ejs') %>
+
+  <!DOCTYPE html>
+  <html>
+
   <head>
     <title>Login</title>
     <style>
@@ -7,6 +10,7 @@
         font-family: Arial, sans-serif;
         margin: 0;
         padding: 0;
+        background-color: #f2f2f2;
       }
 
       .container {
@@ -55,36 +59,28 @@
       }
     </style>
   </head>
+
   <body>
     <div class="container">
       <h1>Login</h1>
 
       <form action="/user/login" method="POST">
         <label for="email">Email</label>
-        <input
-          type="text"
-          id="email"
-          name="email"
-          class="<%= message ? 'error-border' : '' %>"
-          required
-        />
+        <input type="text" id="email" name="email" class="<%= message ? 'error-border' : '' %>" required />
 
         <label for="password">Password</label>
-        <input
-          type="password"
-          id="password"
-          name="password"
-          class="<%= message ? 'error-border' : '' %>"
-          required
-        />
+        <input type="password" id="password" name="password" class="<%= message ? 'error-border' : '' %>" required />
         <br />
         <% if (message) { %>
-        <p class="error"><%= message %></p>
-        <% } %>
-        <button type="submit">Login</button>
+          <p class="error">
+            <%= message %>
+          </p>
+          <% } %>
+            <button type="submit">Login</button>
 
-        <p>Don't have an account? <a href="/user/register">register</a></p>
+            <p>Don't have an account? <a href="/user/register">register</a></p>
       </form>
     </div>
   </body>
-</html>
+
+  </html>

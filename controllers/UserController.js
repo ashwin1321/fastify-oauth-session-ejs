@@ -3,10 +3,23 @@ export default {
     try {
       const { email, password } = request.body;
 
+      const validateEmail = (email) => {
+        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return emailPattern.test(email);
+      };
+
+      if (!validateEmail(email)) {
+        return reply.view("templates/register.ejs", {
+          message: "Invalid email format",
+          user: "",
+        });
+      }
+
       const user = await request.server.Users.findOne({ where: { email } }); // Retrieve the user from the Users table
       if (user) {
         return reply.view("templates/register.ejs", {
           message: "User already exists",
+          user: "",
         });
       }
 
@@ -43,10 +56,8 @@ export default {
         { where: { email } }
       ); /* Update the user's otp in the Users table */
 
-      return reply.view("templates/otp.ejs", {
-        message: "",
-        user: "",
-      });
+      request.session.email = email; // Store the user's email in the session
+      return reply.redirect("/user/otp");
     } catch (error) {
       console.error("Error logging in a user", error);
       reply.code(500).send("Internal Server Error");
@@ -55,14 +66,18 @@ export default {
 
   verifyOtp: async (request, reply) => {
     try {
-      const { email, otp } = request.body;
+      const { otp } = request.body;
+      const email = request.session.email; // Retrieve the user's email from the session
       const user = await request.server.Users.findOne({ where: { email } });
-
-      if (!user || user.otp !== otp) {
+      if (!user || user.otp != otp) {
         return reply.view("templates/otp.ejs", {
           message: "Wrong OTP, please try again",
+          user: "",
         });
       }
+
+      request.session.userId = user.UserId; // Store the user's id in the session
+      reply.redirect("/todo");
     } catch (error) {
       console.error("Error logging in a user", error);
       reply.code(500).send("Internal Server Error");

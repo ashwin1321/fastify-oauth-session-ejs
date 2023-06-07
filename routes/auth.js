@@ -20,6 +20,10 @@ export default async function (fastify, opts) {
     "/user/otp",
     { preHandler: fastify.isLogged },
     async function (request, reply) {
+      const email = request.session.email;
+      if (!email) {
+        return reply.redirect("/user/login");
+      }
       return reply.view("templates/otp.ejs", { message: "", user: "" });
     }
   );

@@ -47,6 +47,6 @@ export default async function (fastify, opts) {
   });
 
   fastify.setNotFoundHandler(async (request, reply) => {
-    return await reply.view("/templates/404page.ejs", { user: "" });
+    return await reply.view("/templates/404page.ejs");
   });
 }

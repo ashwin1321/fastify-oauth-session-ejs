@@ -48,7 +48,6 @@ export default {
       if (!user || user.password !== password) {
         return reply.view("templates/login.ejs", {
           message: "Wrong credentials",
-          user: "",
         });
       }
 
@@ -76,7 +75,6 @@ export default {
       if (!user || user.otp != otp) {
         return reply.view("templates/otp.ejs", {
           message: "Wrong OTP, please try again",
-          user: "",
         });
       }
 

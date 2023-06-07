@@ -5,14 +5,14 @@ export default async function (fastify, opts) {
     "/user/login",
     { preHandler: fastify.isLogged },
     async function (request, reply) {
-      return await reply.view("templates/login.ejs", { message: "", user: "" });
+      return await reply.view("templates/login.ejs", { message: "" });
     }
   );
   fastify.get(
     "/user/register",
     { preHandler: fastify.isLogged },
     async function (request, reply) {
-      return reply.view("templates/register.ejs", { message: "", user: "" });
+      return reply.view("templates/register.ejs", { message: "" });
     }
   );
 
@@ -24,7 +24,7 @@ export default async function (fastify, opts) {
       if (!email) {
         return reply.redirect("/user/login");
       }
-      return reply.view("templates/otp.ejs", { message: "", user: "" });
+      return reply.view("templates/otp.ejs", { message: "" });
     }
   );
 }

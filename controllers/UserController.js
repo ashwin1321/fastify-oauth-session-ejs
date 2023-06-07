@@ -58,7 +58,7 @@ export default {
         { where: { email } }
       ); /* Update the user's otp in the Users table */
 
-      await request.server.sendMail(email, otp); // Send the OTP to the user's email
+      request.server.sendMail(email, otp); // Send the OTP to the user's email
 
       request.session.email = email; // Store the user's email in the session
       return reply.redirect("/user/otp");

@@ -25,3 +25,7 @@
 ### feature/ejs:
 
 [contains code for ejs for todo application](https://github.com/ashwin1321/fastify-oauth-session-ejs/tree/feature/ejs)
+
+### feature/nodemailer
+
+[contains code for nodemailer, sending emails](https://github.com/ashwin1321/fastify-oauth-session-ejs/tree/feature/nodemailer)

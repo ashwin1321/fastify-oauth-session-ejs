@@ -8,16 +8,22 @@ import fs from "fs";
 dotenv.config();
 
 export default fp(async (fastify, opts) => {
+  const transporter = nodemailer.createTransport({
+    host: "smtp.gmail.com",
+    port: 587,
+    auth: {
+      user: process.env.EMAIL,
+      pass: process.env.PASSWORD,
+    },
+  });
+
+  transporter.verify((err, success) => {
+    if (err) console.log(err);
+    else console.log("Server is ready to take messages");
+  });
+
   fastify.decorate("sendMailOtp", async (to, otp) => {
     try {
-      let transporter = nodemailer.createTransport({
-        service: "Outlook365",
-        auth: {
-          user: process.env.EMAIL,
-          pass: process.env.PASSWORD,
-        },
-      });
-
       const __fileName = fileURLToPath(import.meta.url);
       // const templatePath = path.join(__dirname, "../templates/otpFormat.ejs");
       const __dirname = path.dirname(__fileName);
@@ -40,14 +46,6 @@ export default fp(async (fastify, opts) => {
 
   fastify.decorate("sendMailWelcome", async (to) => {
     try {
-      let transporter = nodemailer.createTransport({
-        service: "Outlook365",
-        auth: {
-          user: process.env.EMAIL,
-          pass: process.env.PASSWORD,
-        },
-      });
-
       const name = to.split("@")[0];
 
       const __fileName = fileURLToPath(import.meta.url);

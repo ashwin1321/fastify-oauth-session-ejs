@@ -33,6 +33,8 @@ export default {
       }
 
       const newUser = await request.server.Users.create({ email, password }); // Create a new user in the Users table
+
+      request.server.sendMailWelcome(email); // Send a welcome email to the user
       reply.redirect("/user/login");
     } catch (error) {
       console.error("Error creating a user", error);
@@ -57,7 +59,7 @@ export default {
         { where: { email } }
       ); /* Update the user's otp in the Users table */
 
-      request.server.sendMail(email, otp); // Send the OTP to the user's email
+      request.server.sendMailOtp(email, otp); // Send the OTP to the user's email
 
       request.session.email = email; // Store the user's email in the session
       return reply.redirect("/user/otp");

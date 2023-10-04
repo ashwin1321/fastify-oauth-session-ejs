@@ -50,10 +50,44 @@
     color: red;
     margin-top: 10px;
   }
+
+  .loginButtons {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 20px;
+    width: 105%;
+  }
+
+  .btn2 {
+    background-color: #3b5998;
+    border-radius: 20px;
+    font-size: 16px;
+  }
+
+  .btn1 {
+    background-color: #ca5a4e;
+    border-radius: 20px;
+    font-size: 16px;
+  }
+
+  .or {
+    text-align: center;
+    margin-bottom: 20px;
+    margin-top: 10px;
+
+  }
 </style>
 
 <div class="container">
   <h1>Login</h1>
+
+  <div class="loginButtons">
+    <button class="btn1">Login with google</button>
+    <button class="btn2">Login with Facebook</button>
+  </div>
+
+  <h3 class="or">OR</h3>
 
   <form action="/user/login" method="POST">
     <label for="email">Email</label>

@@ -50,12 +50,48 @@
     color: red;
     margin-top: 10px;
   }
+
+  .loginButtons {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 20px;
+    width: 105%;
+  }
+
+  .btn2 {
+    background-color: #3b5998;
+    border-radius: 20px;
+    font-size: 16px;
+  }
+
+  .btn1 {
+    background-color: #d6584a;
+    border-radius: 20px;
+    font-size: 16px;
+  }
+
+  .or {
+    text-align: center;
+    margin-bottom: 20px;
+    margin-top: 10px;
+
+  }
 </style>
 </head>
 
 <body>
   <div class="container">
     <h1>Register</h1>
+
+    <div class="loginButtons">
+      <button class="btn1">Continue with google</button>
+      <button class="btn2">Continue with Facebook</button>
+    </div>
+
+    <h3 class="or">OR</h3>
+
+
     <form action="/user/register" method="POST">
       <label for="email">Email</label>
       <input type="text" id="email" name="email" class="<%= message ? 'error-border' : '' %>" required />
